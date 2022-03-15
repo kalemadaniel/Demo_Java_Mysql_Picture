@@ -117,12 +117,15 @@ Si la photo est enregistrée dans la base des données, on peut maintenant la ch
 ### La solution interface graphique
 
 A l'ouverture de l'application, ça se presente comme ceci
+
 ![Capture4](https://user-images.githubusercontent.com/51014164/158351501-c99f23f9-41a4-4d57-88e8-553811399058.JPG)
 
 Il faut ensuite parcourir et trouver la photo
+
 ![Capture2](https://user-images.githubusercontent.com/51014164/158352025-6ea80ea8-248f-46cd-8f8e-d9012f5994b5.JPG)
 
 Enregistrer la photo
+
 ![Capture3](https://user-images.githubusercontent.com/51014164/158352119-d7934bc8-1da0-4cb9-878f-dd1395fd15aa.JPG)
 
 
