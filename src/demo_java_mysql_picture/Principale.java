@@ -5,20 +5,17 @@
  */
 package demo_java_mysql_picture;
 
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modeles.clsPhoto;
 
 /**
  *
  * @author Ulb-Kalema
  */
 public class Principale extends javax.swing.JFrame {
-    FileNameExtensionFilter filter = null;
-    public String cheminPhoto = "";
-    ImageIcon format = null;
+    clsPhoto pht= new clsPhoto();
 
     /**
      * Creates new form Principale
@@ -28,22 +25,6 @@ public class Principale extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    void choix_photo(JLabel photo) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
-        fileChooser.addChoosableFileFilter(filter);
-        int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            cheminPhoto = path;
-            ImageIcon imgIcon = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
-            java.awt.Image img = imgIcon.getImage().getScaledInstance(photo.getWidth(), photo.getHeight(), java.awt.Image.SCALE_DEFAULT);
-            ImageIcon imgIco = new ImageIcon(img);
-            photo.setIcon(imgIco);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,7 +94,12 @@ public class Principale extends javax.swing.JFrame {
         jLabel7.setText("Profil");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 50, 20));
 
-        jButton1.setText("Load");
+        jButton1.setText("Load from DB");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 130, 40));
 
         jButton2.setText("Upload");
@@ -124,7 +110,12 @@ public class Principale extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 130, 40));
 
-        jButton3.setText("Save");
+        jButton3.setText("Save in DB");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 130, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 520));
@@ -134,8 +125,26 @@ public class Principale extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        choix_photo(lbl_Photo);
+        pht.choisirPhoto(lbl_Photo);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // Pour inserer la photo coisit
+            if(pht.cheminPhoto!=""){
+                pht.InsererPhoto();
+            }else{
+                JOptionPane.showMessageDialog(this, "Selectionnez la photo en premier SVP");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        pht.retourphoto(lbl_Photo);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
