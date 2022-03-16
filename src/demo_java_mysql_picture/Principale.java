@@ -89,7 +89,7 @@ public class Principale extends javax.swing.JFrame {
         jLabel6.setText("Home");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 50, 20));
 
-        jLabel7.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel7.setForeground(new java.awt.Color(177, 80, 17));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Profil");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 50, 20));
